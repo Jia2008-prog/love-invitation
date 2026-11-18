@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff1f3" />
+  <title>給妳的一封邀請函 ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="floating-hearts" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <span class="topbar-mark">A LITTLE LOVE NOTE</span>
+    <span class="topbar-date">MADE WITH LOVE <span>♡</span></span>
+  </header>
+
+  <main>
+    <!-- 第一幕：信封 -->
+    <section class="scene intro-scene" id="intro">
+      <p class="eyebrow">A SPECIAL DELIVERY FOR YOU</p>
+      <h1>有一封信，<em>想親手交給妳。</em></h1>
+      <p class="intro-copy">裡面藏著一個小小的邀請，<br>準備好打開了嗎？</p>
+
+      <button class="envelope-button" id="openEnvelope" aria-label="打開信封">
+        <span class="envelope-shadow"></span>
+        <span class="letter-peek"><span>To. My Favorite Person</span><b>♡</b></span>
+        <span class="envelope">
+          <span class="envelope-back"></span>
+          <span class="envelope-front"></span>
+          <span class="envelope-flap"></span>
+          <span class="wax-seal">♡</span>
+        </span>
+      </button>
+      <button class="text-button" id="openText">點擊信封，收下這份心意</button>
+      <span class="tiny-note">PLEASE OPEN WITH A LITTLE CURIOSITY</span>
+    </section>
+
+    <!-- 第二幕：信件與照片 -->
+    <section class="scene letter-scene hidden" id="letterScene">
+      <div class="letter-card">
+        <div class="letter-topline"><span>A NOTE FOR YOU</span><span>♡ 01 / 02</span></div>
+        <div class="letter-content">
+          <p class="handwritten">親愛的妳：</p>
+          <h2>想把平凡的一天，<br><em>變成我們的小小紀念。</em></h2>
+          <p class="letter-body">
+            其實沒有什麼特別的理由，<br>
+            只是最近想和妳一起留下新的回憶。<br>
+            不管是吃一頓喜歡的料理、散散步，<br>
+            還是聊一些沒有結論的小事，<br>
+            只要身邊的人是妳，就會很值得期待。
+          </p>
+          <p class="letter-sign">期待和妳見面的我 <span>♡</span></p>
+        </div>
+        <div class="letter-bottom"><span>WITH ALL MY HEART</span><span>✦</span></div>
+      </div>
+
+      <div class="memory-side">
+        <p class="eyebrow">OUR LITTLE MOMENTS</p>
+        <h3>想和妳收藏<br>更多這樣的瞬間。</h3>
+        <div class="photo-frame">
+          <button class="photo-arrow prev" id="prevPhoto" aria-label="上一張照片">‹</button>
+          <img id="memoryPhoto" src="photos/photo-1.jpg" alt="我們的回憶照片" />
+          <button class="photo-arrow next" id="nextPhoto" aria-label="下一張照片">›</button>
+          <span class="photo-caption" id="photoCaption">a moment to remember ♡</span>
+        </div>
+        <div class="photo-dots" id="photoDots" aria-label="照片頁數"></div>
+      </div>
+      <button class="primary-button continue-button" id="toQuestion">繼續往下看看 <span>→</span></button>
+    </section>
+
+    <!-- 第三幕：邀請 -->
+    <section class="scene question-scene hidden" id="questionScene">
+      <p class="eyebrow">THE MOST IMPORTANT QUESTION</p>
+      <div class="big-heart">♡</div>
+      <h2>那麼，<em>妳願意</em><br>和我一起去約會嗎？</h2>
+      <p class="question-sub">想和妳一起吃好吃的、走走逛逛，<br>再把這一天變成我們的回憶。</p>
+      <div class="answer-buttons">
+        <button class="primary-button yes-button" id="yesButton">我願意！♡</button>
+        <button class="secondary-button no-button" id="noButton">讓我想一下</button>
+      </div>
+      <p class="gentle-note" id="gentleNote">不急，照妳的心意就好。</p>
+    </section>
+
+    <!-- 第四幕：成功 -->
+    <section class="scene success-scene hidden" id="successScene">
+      <div class="success-sparkle">✦　♡　✦</div>
+      <p class="eyebrow">IT'S A DATE!</p>
+      <h2>太好了！<br><em>期待和妳見面。</em></h2>
+      <p class="success-copy">這份邀請已經被幸福地收下了。<br>接下來，就一起期待我們的約會吧！</p>
+      <div class="date-ticket">
+        <span class="ticket-label">OUR NEXT LITTLE ADVENTURE</span>
+        <strong>DATE WITH YOU</strong>
+        <div class="ticket-line"></div>
+        <p>日期：<span>2026 年 11 月 19 日</span></p>
+        <p>地點：<span>溫暖的家</span></p>
+        <p>期待和你相處的每一個時刻！</p>
+        <div class="ticket-stamp">♡</div>
+      </div>
+      <p class="final-note">P.S. 謝謝妳，讓平凡的日子有了期待。</p>
+      <button class="text-button replay-button" id="replayButton">再看一次這封信 ↺</button>
+    </section>
+  </main>
+
+  <footer><span>MADE JUST FOR YOU</span><span>♡</span><span>ONE INVITATION, A THOUSAND MEMORIES</span></footer>
+
+  <button class="music-toggle" id="musicToggle" aria-label="播放或暫停背景音樂">
+    <span class="music-icon">♫</span><span id="musicLabel">播放音樂</span>
+  </button>
+  <audio id="bgMusic" src="music.mp3" loop preload="none"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
