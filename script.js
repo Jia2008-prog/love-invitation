@@ -48,13 +48,35 @@ renderPhoto();
 $("toQuestion").addEventListener("click", () => showScene("questionScene"));
 
 const gentleMessages = [
-  "不急，照妳的心意就好。",
-  "可以慢慢想，我想讓妳自在地決定。",
-  "如果需要討論日期和地點，我們可以一起安排。"
+  "真的不再考慮一下嗎？我可是期待了好久呢！🥺",
+  "如果可以，我想把每一個平凡的日子，都變成和妳的特別回憶。",
+  "世界上有好多有趣的地方，但我最期待的，還是有妳一起去的地方。",
+  "我想把好多好多的喜歡，都留在我們相處的每一個瞬間。",
+  "最後再問一次嘛，讓我有機會陪妳度過這一天，好不好？❤️",
+  "其實只要有妳在，平凡的一天也會變得很特別。💕"
 ];
-let gentleIndex = 0;
-$("noButton").addEventListener("click", () => {
-  gentleIndex = (gentleIndex + 1) % gentleMessages.length;
+
+let gentleIndex = -1;
+let noClickCount = 0;
+
+const noButton = $("noButton");
+const yesButton = $("yesButton");
+
+noButton.addEventListener("click", () => {
+  noClickCount++;
+
+  // 同意按鈕逐漸放大，最多 1.25 倍
+  const yesScale = Math.min(1 + noClickCount * 0.08, 1.25);
+
+  // 拒絕按鈕逐漸縮小，最小 0.65 倍
+  const noScale = Math.max(1 - noClickCount * 0.1, 0.65);
+
+  yesButton.style.transform = `scale(${yesScale})`;
+  noButton.style.transform = `scale(${noScale})`;
+
+  // 依序顯示文字，最後停留在最後一句
+  gentleIndex = Math.min(gentleIndex + 1, gentleMessages.length - 1);
+
   $("gentleNote").textContent = gentleMessages[gentleIndex];
 });
 
@@ -81,8 +103,20 @@ $("yesButton").addEventListener("click", () => {
 $("replayButton").addEventListener("click", () => {
   envelopeButton.classList.remove("open");
   $("openText").textContent = "點擊信封，收下這份心意";
+
+  // 重置照片
   photoIndex = 0;
   renderPhoto();
+
+  // 重置按鈕大小
+  noClickCount = 0;
+  gentleIndex = -1;
+  yesButton.style.transform = "scale(1)";
+  noButton.style.transform = "scale(1)";
+
+  // 重置提示文字
+  $("gentleNote").textContent = "選一個妳喜歡的答案吧！";
+
   showScene("intro");
 });
 
@@ -106,4 +140,67 @@ $("musicToggle").addEventListener("click", async () => {
 music.addEventListener("ended", () => {
   $("musicLabel").textContent = "播放音樂";
   $("musicToggle").classList.remove("playing");
+});
+// ==============================
+// 約會倒數計時器
+// ==============================
+
+const dateTarget = new Date(2026, 10, 25, 0, 0, 0).getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = dateTarget - now;
+
+  if (distance <= 0) {
+    $("days").textContent = "00";
+    $("hours").textContent = "00";
+    $("minutes").textContent = "00";
+    $("seconds").textContent = "00";
+    $("countdownMessage").textContent = "今天就是我們的約會日！♡";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  $("days").textContent = String(days).padStart(2, "0");
+  $("hours").textContent = String(hours).padStart(2, "0");
+  $("minutes").textContent = String(minutes).padStart(2, "0");
+  $("seconds").textContent = String(seconds).padStart(2, "0");
+}
+
+// 立即執行一次，之後每秒更新
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ==============================
+// 愛心彩蛋動畫
+// ==============================
+
+document.addEventListener("click", function(event) {
+  const heart = document.createElement("span");
+
+  heart.className = "floating-heart";
+
+  // 隨機愛心樣式
+  const hearts = ["♡", "♥", "💕", "💗", "💖"];
+  heart.textContent = hearts[
+    Math.floor(Math.random() * hearts.length)
+  ];
+
+  // 設定愛心出現的位置
+  heart.style.left = event.clientX + "px";
+  heart.style.top = event.clientY + "px";
+
+  // 隨機大小
+  heart.style.fontSize = (18 + Math.random() * 18) + "px";
+
+  document.body.appendChild(heart);
+
+  // 動畫結束後移除元素
+  heart.addEventListener("animationend", function() {
+    heart.remove();
+  });
 });
