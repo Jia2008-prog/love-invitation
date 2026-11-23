@@ -116,3 +116,56 @@ footer span:nth-child(2) { color: #c77d89; font-size: 16px; }
   .music-toggle { right: 15px; bottom: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+/* 約會邀請按鈕互動效果 */
+.answer-buttons {
+  align-items: center;
+  position: relative;
+  gap: 18px;
+}
+
+.answer-buttons button {
+  transform-origin: center center;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+/* 手機版避免按鈕放大後擠壓版面 */
+@media (max-width: 760px) {
+  .answer-buttons {
+    gap: 20px;
+    padding: 12px 0;
+  }
+}
+/* ==============================
+   愛心彩蛋動畫
+============================== */
+
+.floating-heart {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  color: #f28ca8;
+  font-size: 24px;
+  animation: heartFloat 1.6s ease-out forwards;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 3px 10px rgba(242, 140, 168, 0.25);
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1.2) rotate(15deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -180%) scale(0.8) rotate(-15deg);
+  }
+}
